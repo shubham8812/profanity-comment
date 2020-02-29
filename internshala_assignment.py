@@ -41,17 +41,13 @@ def pro(comment):
     
     '''
      profanity words 'f*ck' and 'f*ck you' both have 'f*ck' hence count will count it as 3 profanity words, 2 for 'f*ck' 1 for 'f*ck you' 
-     so below conditional statement will avoid this error.
-     if number of 'f*ck' is not equal number of 'f*ck you' then we will will substract extra 'f*ck' count which is equal to
-     number of 'f*ck you'.
+     so we will will substract extra 'f*ck' count which is equal to number of 'f*ck you'.
     '''
-    
-    if len(re.findall(list_of_profanity[0].lower(),comment)) != len(re.findall(list_of_profanity[1].lower(),comment.lower())):
-        count = count - len(re.findall(list_of_profanity[1].lower(),comment.lower())) 
+        
+    count = count - len(re.findall(list_of_profanity[1].lower(),comment.lower())) 
 
     # same goes with 'bitch' and 'Son of a bitch'
-    if len(re.findall(list_of_profanity[2].lower(),comment)) != len(re.findall(list_of_profanity[3].lower(),comment.lower())):
-        count = count - len(re.findall(list_of_profanity[3].lower(),comment.lower()))
+    count = count - len(re.findall(list_of_profanity[3].lower(),comment.lower()))
     
     return count/number_of_profanity_words 
 '''
@@ -60,7 +56,7 @@ degree of profanity = (number of profanity words in a comment)/(total number of 
 
 
 
-df['degree of profanity'] = df.comments.apply(pro) # pandas apply function takes much lesser time than usual for loop 
+#df['degree of profanity'] = df.comments.apply(pro) # pandas apply function takes much lesser time than usual for loop 
 
 print(df) # solution
 
